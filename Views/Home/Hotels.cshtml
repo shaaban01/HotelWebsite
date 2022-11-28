@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Hotels";
+}
+<div class="container">
+    @if (ViewBag.Hotels != null)
+    {
+        @foreach (var hotel in ViewBag.Hotels)
+        {
+            <div class="card" style="width: 18rem;">
+                <img src=@hotel.imgURL class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">@hotel.name</h5>
+                    <p class="card-text">Location: @hotel.location</p>
+                    <a href="#" onclick="@ViewBag.hotel = hotel; " class="btn btn-primary">view</a>
+                    <a href="#" id="deleteHotel" class="btn btn-primary">Delete</a>
+                    @using (Html.BeginForm())
+                    {
+                        <button name="X-HTTP-Method-Override" value="DELETE">Delete</button>
+                    }
+                    <button name="X-HTTP-Method-Override" value="DELETE" formnovalidate class="cancel"
+                    onclick="return confirm('Are you sure?')">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        }
+
+    }
+</div>
+<script type="text/jscript">
+    $('#deleteHotel').click(function () {
+        var url = "/Home/Delete";
+        var name = $('#Name').val();
+        $.get(url, { input: name }, function (data) {
+            $("#rData").html(data);
+        });
+    })
+</script>

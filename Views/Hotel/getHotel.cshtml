@@ -1,0 +1,32 @@
+﻿@using Lab_10.Models;
+@model Hotel
+@{
+    ViewData["Title"] = "getHotel";
+}
+
+
+<div class="container d-flex align-content-between my-4 text-white p-5">
+
+    <div class="w-50">
+        <h1 class="text-white">@Model.name</h1>
+        @for (var i = 0; i < @Model.rating; i++)
+        {
+            <img src="~/Star.png" style="width:20px;" />
+        }
+        <h3 class="mt-3">Description</h3>
+        <p>@Model.description</p>
+        <br />
+        <span class="mt-2"><strong>Location: </strong>@Model.location </span>
+        <br />
+        <span class="mt-2"><strong>Room: </strong>@Model.rooms </span>
+        <br />
+        <span class="mt-2"><strong>Phone: </strong>@Model.phone </span>
+    </div>
+
+    <div class="p-5 w-50 ">
+        <img class="border border-5 border-warning w-100 mt-3" src=@Model.imgURL style="border-radius:20px" />
+    </div>
+
+</div>
+
+
